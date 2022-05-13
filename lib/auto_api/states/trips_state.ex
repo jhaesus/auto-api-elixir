@@ -29,7 +29,7 @@ defmodule AutoApi.TripsState do
 
   use AutoApi.State, spec_file: "trips.json"
 
-  @type type :: :single | :multi
+  @type type :: :single | :multi | :eco
 
   @type address_component_types ::
           :city
@@ -42,6 +42,18 @@ defmodule AutoApi.TripsState do
           | :other
 
   @type address_component :: %{type: address_component_types(), value: String.t()}
+
+  @type event ::
+          :harsh_braking
+          | :harsh_acceleration
+          | :sharp_turn
+          | :over_rpm
+          | :overspeed
+          | :idling_engine_on
+
+  @type eco_level :: :high | :medium
+
+  @type eco_driving_threshold :: %{type: :zero | :one, value: float()}
 
   @type t :: %__MODULE__{
           type: State.property(type()),
@@ -58,7 +70,13 @@ defmodule AutoApi.TripsState do
           average_fuel_consumption: State.property(UnitType.fuel_efficiency()),
           distance: State.property(UnitType.length()),
           start_address_components: State.multiple_property(address_component()),
-          end_address_components: State.multiple_property(address_component())
+          end_address_components: State.multiple_property(address_component()),
+          event: State.property(event()),
+          eco_level: State.property(eco_level()),
+          thresholds: State.multiple_property(eco_driving_threshold()),
+          total_fuel_consumption: State.property(UnitType.volume()),
+          total_idle_fuel_consumption: State.property(UnitType.volume()),
+          maximum_speed: State.property(UnitType.speed())
         }
 
   @doc """

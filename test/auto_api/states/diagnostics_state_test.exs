@@ -110,13 +110,43 @@ defmodule AutoApi.DiagnosticsStateTest do
           }
         }
       ],
-      diesel_exhaust_filter_status: %Property{
-        data: %{
-          status: :at_limit,
-          component: :diesel_particulate_filter,
-          cleaning: :interrupted
+      diesel_exhaust_filter_status: [
+        %Property{
+          data: %{
+            status: :at_limit,
+            component: :diesel_particulate_filter,
+            cleaning: :interrupted
+          }
         }
-      }
+      ],
+      engine_total_idle_operating_time: %Property{data: %{value: 11, unit: :hours}},
+      engine_oil_amount: %Property{data: %{value: 1.004, unit: :gallons}},
+      engine_oil_level: %Property{data: 0.95},
+      estimated_secondary_powertrain_range: %Property{data: %{value: 11, unit: :meters}},
+      fuel_level_accuracy: %Property{data: :calculated},
+      tire_pressures_targets: [
+        %Property{
+          data: %{
+            location: :spare,
+            pressure: %{value: 11, unit: :bars}
+          }
+        }
+      ],
+      tire_pressures_differences: [
+        %Property{
+          data: %{
+            location: :spare,
+            pressure: %{value: 11, unit: :bars}
+          }
+        }
+      ],
+      backup_battery_remaining_time: %Property{data: %{value: 11, unit: :hours}},
+      engine_coolant_fluid_level: %Property{data: :filled},
+      engine_oil_fluid_level: %Property{data: :high},
+      engine_oil_pressure_level: %Property{data: :no_sensor},
+      engine_time_to_next_service: %Property{data: %{value: 11, unit: :hours}},
+      low_voltage_battery_charge_level: %Property{data: :deactivation_level_2},
+      engine_oil_service_status: %Property{data: :critical}
     }
 
     new_state =

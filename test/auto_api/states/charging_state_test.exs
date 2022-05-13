@@ -64,7 +64,26 @@ defmodule AutoApi.ChargingStateTest do
       preconditioning_departure_status: %Property{data: :inactive},
       preconditioning_immediate_status: %Property{data: :active},
       preconditioning_departure_enabled: %Property{data: :enabled},
-      preconditioning_error: %Property{data: :available_after_engine_restart}
+      preconditioning_error: %Property{data: :available_after_engine_restart},
+      auxiliary_power: %Property{data: %{value: 10.009, unit: :kilowatts}},
+      charging_complete_lock: %Property{data: :active},
+      battery_max_available: %Property{data: %{value: 10.009, unit: :kilowatt_hours}},
+      charging_end_reason: %Property{data: :requested_by_driver},
+      charging_phases: %Property{data: :three},
+      battery_energy: %Property{data: %{value: 10.009, unit: :kilowatt_hours}},
+      battery_energy_chargable: %Property{data: %{value: 10.009, unit: :kilowatt_hours}},
+      charging_single_immediate: %Property{data: :active},
+      charging_time_display: %Property{data: :no_display_duration},
+      departure_time_display: %Property{data: :not_reachable},
+      restriction: %Property{data: %{active: :active, limit: :reduced}},
+      limit_status: %Property{data: :active},
+      current_limit: %Property{data: %{value: 10.010, unit: :milliamperes}},
+      smart_charging_option: %Property{data: :co2_optimized},
+      plug_lock_status: %Property{data: :locked},
+      flap_lock_status: %Property{data: :locked},
+      acoustic_limit: %Property{data: :unlimited},
+      min_charging_current: %Property{data: %{value: 10.010, unit: :milliamperes}},
+      estimated_range_target: %Property{data: %{value: 40_075, unit: :kilometers}}
     }
 
     new_state =

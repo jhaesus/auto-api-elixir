@@ -30,11 +30,28 @@ defmodule AutoApi.VehicleInformationState do
   use AutoApi.State, spec_file: "vehicle_information.json"
 
   @type powertrain ::
-          :unknown | :all_electric | :combustion_engine | :phev | :hydrogen | :hydrogen_hybrid
+          :unknown
+          | :all_electric
+          | :combustion_engine
+          | :phev
+          | :hydrogen
+          | :hydrogen_hybrid
+          | :petrol
+          | :electric
+          | :gas
+          | :diesel
+          | :gasoline
+          | :cng
+          | :lpg
+          | :hybrid
 
   @type gearbox :: :manual | :automatic | :semi_automatic
 
   @type drive :: :fwd | :rwd | :four_wd | :awd
+
+  @type data_quality :: :no_data | :up_to_date | :almost_up_to_date | :out_of_date
+
+  @type time_zone :: :wintertime | :summertime | :utc | :manual
 
   @type t :: %__MODULE__{
           powertrain: State.property(powertrain()),
@@ -57,7 +74,17 @@ defmodule AutoApi.VehicleInformationState do
           power: State.property(UnitType.power()),
           language: State.property(String.t()),
           timeformat: State.property(:twelve_h | :twenty_four_h),
-          drive: State.property(drive())
+          drive: State.property(drive()),
+          powertrain_secondary: State.property(powertrain()),
+          fuel_tank_capacity: State.property(UnitType.volume()),
+          build_date: State.property(DateTime.t()),
+          country_code: State.property(String.t()),
+          model_key: State.property(String.t()),
+          data_quality: State.property(data_quality),
+          extra_equipment_codes: State.multiple_property(String.t()),
+          series: State.property(String.t()),
+          last_data_transfer_date: State.property(DateTime.t()),
+          time_zone: State.property(time_zone)
         }
 
   @doc """
