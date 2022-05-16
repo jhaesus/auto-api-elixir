@@ -24,7 +24,7 @@ defmodule AutoApi.Event do
   @moduledoc """
     Retrieves events specifications
   """
-  require AutoApi.Event.Meta
-
-  @before_compile AutoApi.Event.Meta
+  @external_resource "specs/misc/events.json"
+  @spec_file {@external_resource, "events"}
+  @before_compile AutoApi.CustomType.Meta
 end
